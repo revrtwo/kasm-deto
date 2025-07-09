@@ -14,7 +14,13 @@ RUN sh -c 'wget -O - http://deb.opera.com/archive.key | apt-key add -'
 RUN apt-get update
 RUN apt install opera-stable -y
 
-RUN mkdir -p ~/.local/share/applications && echo -e '[Desktop Entry]\nName=Opera\nComment=Launch Opera browser\nExec=opera --no-sandbox\nIcon=opera\nTerminal=false\nType=Application\nCategories=Network;WebBrowser;' > ~/.local/share/applications/opera.desktop && chmod +x ~/.local/share/applications/opera.desktop && cp ~/.local/share/applications/opera.desktop ~/Desktop/ && chmod +x ~/Desktop/opera.desktop
+RUN mkdir -p /root/.local/share/applications && \
+    printf '[Desktop Entry]\nName=Opera\nComment=Launch Opera browser\nExec=opera --no-sandbox\nIcon=opera\nTerminal=false\nType=Application\nCategories=Network;WebBrowser;\n' > /root/.local/share/applications/opera.desktop && \
+    chmod +x /root/.local/share/applications/opera.desktop && \
+    mkdir -p /root/Desktop && \
+    cp /root/.local/share/applications/opera.desktop /root/Desktop/ && \
+    chmod +x /root/Desktop/opera.desktop
+
 RUN echo '(opera --no-sandbox &)' >> ~/.profile
 
 COPY /src/images/bg_default.png /usr/share/backgrounds/
