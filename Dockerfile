@@ -35,4 +35,4 @@ RUN mkdir -p /root/.local/share/applications && \
     cp /root/.local/share/applications/opera.desktop /home/kasm-user/Desktop/ && \
     chmod +x /home/kasm-user/Desktop/opera.desktop
 
-RUN echo '(opera --no-sandbox &)' >> ~/.profile
+RUN echo '(opera --no-sandbox &)' >> /home/kasm-user/.profile
