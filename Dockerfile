@@ -35,4 +35,6 @@ RUN mkdir -p /root/.local/share/applications && \
     cp /root/.local/share/applications/opera.desktop /home/kasm-user/Desktop/ && \
     chmod +x /home/kasm-user/Desktop/opera.desktop
 
-RUN echo '(opera --no-sandbox &)' >> /home/kasm-user/.profile
+#RUN echo '(opera --no-sandbox &)' >> /home/kasm-user/.profile
+
+RUN printf '[Desktop Entry]\nType=Application\nExec=opera --no-sandbox\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName=Opera No Sandbox\nComment=Launch Opera browser with no sandbox\n' > /etc/xdg/autostart/opera.desktop
