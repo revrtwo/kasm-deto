@@ -3,7 +3,8 @@ USER root
 
 ENV HOME /home/kasm-default-profile
 ENV STARTUPDIR /dockerstartup
-ENV INST_SCRIPTS $STARTUPDIR/install
+ENV INST_DIR $STARTUPDIR/install
+ENV INST_SCRIPTS /$INST_DIR/vpn/install_vpn.sh
 WORKDIR $HOME
 
 RUN sh -c 'echo "deb http://deb.opera.com/opera/ stable non-free" >> /etc/apt/sources.list.d/opera.list'
@@ -19,6 +20,12 @@ RUN mkdir -p /root/.local/share/applications && \
     chmod +x /home/kasm-user/Desktop/opera.desktop
 
 RUN printf '[Desktop Entry]\nType=Application\nExec=opera --no-sandbox\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName=Opera No Sandbox\nComment=Launch Opera browser with no sandbox\n' > /etc/xdg/autostart/opera.desktop
+
+COPY /src/scripts/ $INST_DIR
+RUN \
+  for SCRIPT in $INST_SCRIPTS; do \
+    bash ${INST_DIR}${SCRIPT} || exit 1; \
+  done
 
 RUN chown 1000:0 $HOME
 RUN $STARTUPDIR/set_user_permission.sh $HOME
