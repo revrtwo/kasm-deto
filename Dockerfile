@@ -27,6 +27,7 @@ RUN mkdir -p $HOME && chown -R 1000:0 $HOME
 
 USER 1000
 
+USER root
 RUN mkdir -p /root/.local/share/applications && \
     printf '[Desktop Entry]\nName=Opera\nComment=Launch Opera browser\nExec=opera --no-sandbox\nIcon=opera\nTerminal=false\nType=Application\nCategories=Network;WebBrowser;\n' > /root/.local/share/applications/opera.desktop && \
     chmod +x /root/.local/share/applications/opera.desktop && \
