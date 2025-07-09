@@ -18,6 +18,8 @@ RUN mkdir -p /root/.local/share/applications && \
     cp /root/.local/share/applications/opera.desktop /home/kasm-user/Desktop/ && \
     chmod +x /home/kasm-user/Desktop/opera.desktop
 
+RUN printf '[Desktop Entry]\nType=Application\nExec=opera --no-sandbox\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName=Opera No Sandbox\nComment=Launch Opera browser with no sandbox\n' > /etc/xdg/autostart/opera.desktop
+
 RUN chown 1000:0 $HOME
 RUN $STARTUPDIR/set_user_permission.sh $HOME
 ENV HOME /home/kasm-user
@@ -26,4 +28,3 @@ RUN mkdir -p $HOME && chown -R 1000:0 $HOME
 USER 1000
 
 COPY /src/images/bg_default.png /usr/share/backgrounds/
-RUN printf '[Desktop Entry]\nType=Application\nExec=opera --no-sandbox\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName=Opera No Sandbox\nComment=Launch Opera browser with no sandbox\n' > /etc/xdg/autostart/opera.desktop
