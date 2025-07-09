@@ -17,6 +17,7 @@ RUN apt install opera-stable -y
 RUN mkdir -p ~/.local/share/applications && echo -e '[Desktop Entry]\nName=Opera\nComment=Launch Opera browser\nExec=opera --no-sandbox\nIcon=opera\nTerminal=false\nType=Application\nCategories=Network;WebBrowser;' > ~/.local/share/applications/opera.desktop && chmod +x ~/.local/share/applications/opera.desktop && cp ~/.local/share/applications/opera.desktop ~/Desktop/ && chmod +x ~/Desktop/opera.desktop
 RUN echo '(opera --no-sandbox &)' >> ~/.profile
 
+COPY .src/images/bg_default.png /usr/share/backgrounds/
 
 ######### End Customizations ###########
 
