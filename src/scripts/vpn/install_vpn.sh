@@ -78,5 +78,5 @@ fi
 sed -i '/cmd sysctl -q/d' $(which wg-quick)
 
 # Copy startup script
-cp ${INST_DIR}/ubuntu/install/vpn/start_vpn.sh /dockerstartup/start_vpn.sh
+cp ${INST_DIR}/vpn/start_vpn.sh /dockerstartup/start_vpn.sh
 chmod +x /dockerstartup/start_vpn.sh
