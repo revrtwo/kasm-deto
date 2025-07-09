@@ -14,13 +14,6 @@ RUN sh -c 'wget -O - http://deb.opera.com/archive.key | apt-key add -'
 RUN apt-get update
 RUN apt install opera-stable -y
 
-RUN mkdir -p /root/.local/share/applications && \
-    printf '[Desktop Entry]\nName=Opera\nComment=Launch Opera browser\nExec=opera --no-sandbox\nIcon=opera\nTerminal=false\nType=Application\nCategories=Network;WebBrowser;\n' > /root/.local/share/applications/opera.desktop && \
-    chmod +x /root/.local/share/applications/opera.desktop && \
-    mkdir -p /root/Desktop && \
-    cp /root/.local/share/applications/opera.desktop /home/kasm-user/Desktop/ && \
-    chmod +x /home/kasm-user/Desktop/opera.desktop
-
 COPY /src/images/bg_default.png /usr/share/backgrounds/
 
 ######### End Customizations ###########
@@ -33,5 +26,12 @@ WORKDIR $HOME
 RUN mkdir -p $HOME && chown -R 1000:0 $HOME
 
 USER 1000
+
+RUN mkdir -p /root/.local/share/applications && \
+    printf '[Desktop Entry]\nName=Opera\nComment=Launch Opera browser\nExec=opera --no-sandbox\nIcon=opera\nTerminal=false\nType=Application\nCategories=Network;WebBrowser;\n' > /root/.local/share/applications/opera.desktop && \
+    chmod +x /root/.local/share/applications/opera.desktop && \
+    mkdir -p /root/Desktop && \
+    cp /root/.local/share/applications/opera.desktop /home/kasm-user/Desktop/ && \
+    chmod +x /home/kasm-user/Desktop/opera.desktop
 
 RUN echo '(opera --no-sandbox &)' >> ~/.profile
