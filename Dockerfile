@@ -11,18 +11,6 @@ RUN sh -c 'wget -O - http://deb.opera.com/archive.key | apt-key add -'
 RUN apt-get update
 RUN apt install opera-stable -y
 
-COPY /src/images/bg_default.png /usr/share/backgrounds/
-
-RUN chown 1000:0 $HOME
-RUN $STARTUPDIR/set_user_permission.sh $HOME
-
-ENV HOME /home/kasm-user
-WORKDIR $HOME
-RUN mkdir -p $HOME && chown -R 1000:0 $HOME
-
-USER 1000
-
-#USER root
 RUN mkdir -p /root/.local/share/applications && \
     printf '[Desktop Entry]\nName=Opera\nComment=Launch Opera browser\nExec=opera --no-sandbox\nIcon=opera\nTerminal=false\nType=Application\nCategories=Network;WebBrowser;\n' > /root/.local/share/applications/opera.desktop && \
     chmod +x /root/.local/share/applications/opera.desktop && \
@@ -30,4 +18,12 @@ RUN mkdir -p /root/.local/share/applications && \
     cp /root/.local/share/applications/opera.desktop /home/kasm-user/Desktop/ && \
     chmod +x /home/kasm-user/Desktop/opera.desktop
 
+RUN chown 1000:0 $HOME
+RUN $STARTUPDIR/set_user_permission.sh $HOME
+ENV HOME /home/kasm-user
+WORKDIR $HOME
+RUN mkdir -p $HOME && chown -R 1000:0 $HOME
+USER 1000
+
+COPY /src/images/bg_default.png /usr/share/backgrounds/
 RUN printf '[Desktop Entry]\nType=Application\nExec=opera --no-sandbox\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName=Opera No Sandbox\nComment=Launch Opera browser with no sandbox\n' > /etc/xdg/autostart/opera.desktop
