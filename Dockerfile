@@ -22,6 +22,7 @@ RUN mkdir -p /root/.local/share/applications && \
 RUN printf '[Desktop Entry]\nType=Application\nExec=opera --no-sandbox\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName=Opera No Sandbox\nComment=Launch Opera browser with no sandbox\n' > /etc/xdg/autostart/opera.desktop
 
 COPY /src/scripts/ $INST_DIR
+#COPY openvpn.conf $STARTUPDIR
 RUN bash $INST_SCRIPTS/vpn/install_vpn.sh
 
 RUN chown 1000:0 $HOME
