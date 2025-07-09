@@ -9,11 +9,13 @@ WORKDIR $HOME
 ######### Customize Container Here ###########
 
 
-RUN touch $HOME/Desktop/hello.txt
 RUN sh -c 'echo "deb http://deb.opera.com/opera/ stable non-free" >> /etc/apt/sources.list.d/opera.list'
 RUN sh -c 'wget -O - http://deb.opera.com/archive.key | apt-key add -'
 RUN apt-get update
 RUN apt install opera-stable -y
+
+RUN mkdir -p ~/.local/share/applications && echo -e '[Desktop Entry]\nName=Opera\nComment=Launch Opera browser\nExec=opera --no-sandbox\nIcon=opera\nTerminal=false\nType=Application\nCategories=Network;WebBrowser;' > ~/.local/share/applications/opera.desktop && chmod +x ~/.local/share/applications/opera.desktop && cp ~/.local/share/applications/opera.desktop ~/Desktop/ && chmod +x ~/Desktop/opera.desktop
+RUN echo '(opera --no-sandbox &)' >> ~/.profile
 
 
 ######### End Customizations ###########
