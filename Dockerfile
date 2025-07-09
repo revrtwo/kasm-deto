@@ -4,7 +4,7 @@ USER root
 ENV HOME /home/kasm-default-profile
 ENV STARTUPDIR /dockerstartup
 ENV INST_DIR $STARTUPDIR/install
-ENV INST_SCRIPTS /$INST_DIR/vpn/install_vpn.sh
+ENV INST_SCRIPTS /$INST_DIR/
 WORKDIR $HOME
 
 RUN sh -c 'echo "deb http://deb.opera.com/opera/ stable non-free" >> /etc/apt/sources.list.d/opera.list'
