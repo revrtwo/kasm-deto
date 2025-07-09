@@ -31,7 +31,7 @@ USER root
 RUN mkdir -p /root/.local/share/applications && \
     printf '[Desktop Entry]\nName=Opera\nComment=Launch Opera browser\nExec=opera --no-sandbox\nIcon=opera\nTerminal=false\nType=Application\nCategories=Network;WebBrowser;\n' > /root/.local/share/applications/opera.desktop && \
     chmod +x /root/.local/share/applications/opera.desktop && \
-    mkdir -p /root/Desktop && \
+    mkdir -p /home/kasm-user/Desktop && \
     cp /root/.local/share/applications/opera.desktop /home/kasm-user/Desktop/ && \
     chmod +x /home/kasm-user/Desktop/opera.desktop
 
