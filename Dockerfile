@@ -25,11 +25,11 @@ COPY /src/scripts/ $INST_DIR
 #COPY openvpn.conf $STARTUPDIR
 RUN bash $INST_SCRIPTS/vpn/install_vpn.sh
 
-#RUN chown 1000:0 $HOME
-#RUN $STARTUPDIR/set_user_permission.sh $HOME
+RUN chown 1000:0 $HOME
+RUN $STARTUPDIR/set_user_permission.sh $HOME
 ENV HOME /home/kasm-user
-#WORKDIR $HOME
-#RUN mkdir -p $HOME && chown -R 1000:0 $HOME
-#USER 1000
+WORKDIR $HOME
+RUN mkdir -p $HOME && chown -R 1000:0 $HOME
+USER 1000
 
 COPY /src/images/bg_default.png /usr/share/backgrounds/
