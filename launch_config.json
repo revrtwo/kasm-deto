@@ -1,0 +1,108 @@
+{
+  "launch_form": [
+    {
+      "key": "vpn_service",
+      "help": "Select The Desired VPN Option For The Enviornment",
+      "label": "VPN Service",
+      "value": "openvpn",
+      "options": [
+        {
+          "label": "OpenVPN",
+          "value": "openvpn"
+        },
+        {
+          "label": "Do Not Use A VPN",
+          "value": "novpn"
+        }
+      ],
+      "required": true,
+      "display_if": null,
+      "input_type": "select",
+      "placeholder": null,
+      "allow_saving": true,
+      "validator_regex": null,
+      "validator_regex_description": null
+    },
+    {
+      "key": "novpn_key",
+      "help": "YOU HAVE SELECTED NOT TO USE A VPN SERVICE FOR THIS SESSION",
+      "label": "!! WARNING !!",
+      "value": null,
+      "options": [],
+      "required": true,
+      "display_if": [
+        {
+          "key": "vpn_service",
+          "value_regex": "novpn"
+        }
+      ],
+      "input_type": "text",
+      "placeholder": "Enter 'novpn' here to proceed",
+      "allow_saving": false,
+      "validator_regex": "^novpn$",
+      "validator_regex_description": "Must enter 'novpn' to proceed."
+    },
+    {
+      "key": "openvpn_config",
+      "help": "The OpenVPN Connection Configuration",
+      "label": "OpenVPN Conf",
+      "value": null,
+      "options": [],
+      "required": true,
+      "display_if": [
+        {
+          "key": "vpn_service",
+          "value_regex": "openvpn"
+        }
+      ],
+      "input_type": "passwordtextarea",
+      "placeholder": "OpenVPN configuration details",
+      "allow_saving": true,
+      "validator_regex": null,
+      "validator_regex_description": null
+    },
+    {
+      "key": "openvpn_username",
+      "help": "The OpenVPN Service Username",
+      "label": "OpenVPN Username",
+      "value": null,
+      "options": [],
+      "required": true,
+      "display_if": [
+        {
+          "key": "vpn_service",
+          "value_regex": "openvpn"
+        }
+      ],
+      "input_type": "text",
+      "placeholder": "username",
+      "allow_saving": true,
+      "validator_regex": null,
+      "validator_regex_description": null
+    },
+    {
+      "key": "openvpn_password",
+      "help": "The OpenVPN Service Password",
+      "label": "OpenVPN Password",
+      "value": null,
+      "options": [],
+      "required": true,
+      "display_if": [
+        [
+          {
+            "key": "vpn_service",
+            "value_regex": "openvpn"
+          }
+        ]
+      ],
+      "input_type": "password",
+      "placeholder": "password",
+      "allow_saving": true,
+      "validator_regex": null,
+      "validator_regex_description": null
+    }
+  ],
+  "file_mapping": {
+    "destination": "/dockerstartup/launch_selections.json"
+  }
+}
